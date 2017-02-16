@@ -27,6 +27,23 @@ function addProjectDetails(e) {
 	var idNumber = projectID.substr('project'.length);
 
 	console.log("User clicked on project " + idNumber);
+
+	//$.get("/project/" + idNumber, addProject);
+	//console.log("URL: /project/" + idNumber);
+
+	var url = "/project/" + idNumber;
+	console.log(url)
+	$.get(url, function(result){
+		console.log(result);
+		var insertString = "<img class='detailsImage' src='"+result.image+"'></img><p>"+result.title+"</p><p>"+result.date+"</p><p>"+result.summary+"</p>"
+		$('#details'+projectID).html(insertString);
+	});
+
+}
+
+function addProject(result) {
+	console.log(result);
+	$("#details"+result['id']).html("floop");
 }
 
 /*
@@ -35,4 +52,8 @@ function addProjectDetails(e) {
  */
 function randomizeColors(e) {
 	console.log("User clicked on color button");
+	$.get("/palette", function(){
+		
+	});
+
 }
